@@ -1,9 +1,9 @@
 /**
   ******************************************************************************
   * @file    led.c 
-  * @author  Andreas Oyrer
+  * @author  Marco Söllinger
   * @version V1.0
-  * @date    30-September-2022
+  * @date    10.10.2025
   * @brief   Main program body
   ******************************************************************************
   */
@@ -15,9 +15,12 @@
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
-	#define LED3 GPIO_ODR_0
-	#define LED4 GPIO_ODR_1
-	#define LED5 GPIO_ODR_2
+	#define LED3_ON GPIO_BSRR_BR_0
+	#define LED3_OFF GPIO_BSRR_BS_0
+  #define LED4_ON GPIO_BSRR_BR_1
+	#define LED4_OFF GPIO_BSRR_BS_1
+	#define LED5_ON GPIO_BSRR_BR_2
+	#define LED5_OFF GPIO_BSRR_BS_2
 	
 /* Private variables ---------------------------------------------------------*/
 /* Private function prototypes -----------------------------------------------*/
@@ -46,6 +49,50 @@ void SysTick_Handler()
 }
 
 /**
+  * @brief  This function advances the Led cycle by one step
+	*					The operation in this functions are atomic.
+  * @param  None
+  * @retval None
+  */
+void cycleLed(){
+	static uint8_t pos = 1;
+	
+	switch(pos)  {
+		case 0:
+			GPIOC->BSRR = (LED3_ON | LED4_OFF |  LED5_OFF);
+			break;
+		case 1:
+			GPIOC->BSRR = (LED3_OFF | LED4_ON |  LED5_OFF);
+			break;
+		case 2:
+			GPIOC->BSRR = (LED3_OFF | LED4_OFF |  LED5_ON);
+			break;
+		case 3:
+			GPIOC->BSRR = (LED3_OFF | LED4_ON |  LED5_OFF);
+			break;
+
+		default:
+			GPIOC->BSRR = (LED3_ON | LED4_ON |  LED5_ON);
+			pos = 0xFF;
+		break;
+
+	}
+	
+	pos = (pos+1)%4;
+}
+
+/**
+  * @brief  Setup the inital state for the Led cycle
+	*					Doesnt setup the clock of the Port
+  * @param  None
+  * @retval None
+  */
+void initCycleLed(){
+	GPIOC->BSRR = (LED3_ON | LED4_OFF |  LED5_OFF);
+	GPIOC->MODER |=  GPIO_MODER_MODER0_0 | GPIO_MODER_MODER1_0 | GPIO_MODER_MODER2_0;
+}
+
+/**
   * @brief  Main program
   * @param  None
   * @retval None
@@ -53,51 +100,16 @@ void SysTick_Handler()
 int main(void)
 {
 	SysTick_Init();
-	/*
 	
-		GPIO_InitTypeDef initStruct;
-	
-	GPIO_StructInit(&initStruct);
-	initStruct.GPIO_Pin = GPIO_Pin_0;
-	initStruct.GPIO_Mode = GPIO_Mode_OUT;
-	GPIO_Init(GPIOC, &initStruct);
-	
-	
-	*/
+   // enable clock for GPIO Port C
+   RCC->AHBENR |= RCC_AHBENR_GPIOCEN;
 
-	
-	
-	
-    // enable clock for GPIO C
-    RCC->AHBENR |= RCC_AHBENR_GPIOCEN;
-
-    // set pins 0-2 on port C to output
-		GPIOC->MODER |=  GPIO_MODER_MODER0_0 | GPIO_MODER_MODER1_0 | GPIO_MODER_MODER2_0;
-	
-		char Led_Mask = 0x01;
-		GPIOC->ODR = (GPIO_ODR_0 & ~0x07)| ~Led_Mask;
+	initCycleLed();
 	
 while (1)
     {
-				Led_Mask = (Led_Mask << 1);
-        GPIOC->ODR = (GPIOC->ODR & ~0x07)| ~Led_Mask;
-				
         SysDelay_Delay(200);
-			
-				Led_Mask = (Led_Mask << 1);
-				GPIOC->ODR = (GPIOC->ODR & ~0x07)| ~Led_Mask;
-				
-        SysDelay_Delay(200);
-			
-				Led_Mask = (Led_Mask >> 1);
-				GPIOC->ODR = (GPIOC->ODR & ~0x07)| ~Led_Mask;
-			
-				SysDelay_Delay(200);
-			
-				Led_Mask = (Led_Mask >> 1);
-				GPIOC->ODR = (GPIOC->ODR & ~0x07)| ~Led_Mask;
-			
-				SysDelay_Delay(200);
+				cycleLed();
     }
     
 }
