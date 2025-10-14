@@ -43,6 +43,7 @@ void SysTick_Handler()
     SysDelay_IncTicks();
 }
 
+
 /**
   * @brief  Main program
   * @param  None
@@ -55,28 +56,24 @@ int main(void)
 	LED_Initialize();
 	Button_Initialize();
 	
+	uint8_t counter = 0;
 	
 while (1){
 		uint32_t state = Button_GetState();
+		
 		if(state & BUTTON_USER0_MASK){
-			LED_On(LED4);
-		} else {
-			LED_Off(LED4);
-		}
-		if(state & BUTTON_USER1_MASK){
-			LED_On(LED5);
-		} else {
-			LED_Off(LED5);
-		}
-		if(state & BUTTON_WAKEUP_MASK){
-			LED_On(LED3);
-		} else {
-			LED_Off(LED3);
+			counter++;
 		}
 		
+		if(state & BUTTON_USER1_MASK){
+			counter--;
+		}
+		
+		if(counter
+	
+		LED_SetOut(counter);
     SysDelay_Delay(200);
-			
 
-    }
+  }
     
 }

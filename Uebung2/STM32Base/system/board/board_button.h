@@ -15,9 +15,9 @@
 #include <stdint.h>
 
 /* Exported types ------------------------------------------------------------*/
-#define BUTTON_USER0_MASK       GPIO_Pin_0
-#define BUTTON_USER1_MASK       GPIO_Pin_1
-#define BUTTON_WAKEUP_MASK      GPIO_Pin_0
+#define BUTTON_USER0_MASK       ( 1 << 0)
+#define BUTTON_USER1_MASK       ( 1 << 1)
+#define BUTTON_WAKEUP_MASK      ( 1 << 2)
 
 
 /* Exported functions ------------------------------------------------------- */

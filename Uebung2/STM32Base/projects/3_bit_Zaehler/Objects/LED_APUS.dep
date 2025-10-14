@@ -20,7 +20,7 @@ I (..\..\system\cmsis\core_cm0.h)(0x68E4FB5F)
 I (..\..\system\cmsis\system_stm32f0xx.h)(0x68E4FB60)
 F (..\..\system\cmsis\startup_stm32f072.s)(0x68E4FB60)(--cpu Cortex-M0 --pd "__EVAL SETA 1" -g --diag_suppress=A1950W-IC:\Keil_v5\ARM\Packs\Keil\STM32F0xx_DFP\3.1.0\Drivers\CMSIS\Device\ST\STM32F0xx\Include--pd "__UVISION_VERSION SETA 543"--pd "STM32F072xB SETA 1"--list .\listings\startup_stm32f072.lst--xref -o .\objects\startup_stm32f072.o--depend .\objects\startup_stm32f072.d)
 F (.\stm32f0xx_conf.h)(0x68E4FB5F)()
-F (.\main.c)(0x68EDF61E)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ./ -I ../../system/cmsis -I ../../system/stm32f0-stdperiph -I ../../system/board -I ../../system/utils-IC:/Keil_v5/ARM/Packs/Keil/STM32F0xx_DFP/3.1.0/Drivers/CMSIS/Device/ST/STM32F0xx/Include-D__UVISION_VERSION="543" -DSTM32F072xB-o ./objects/main.o -MMD)
+F (.\main.c)(0x68EE049D)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ./ -I ../../system/cmsis -I ../../system/stm32f0-stdperiph -I ../../system/board -I ../../system/utils-IC:/Keil_v5/ARM/Packs/Keil/STM32F0xx_DFP/3.1.0/Drivers/CMSIS/Device/ST/STM32F0xx/Include-D__UVISION_VERSION="543" -DSTM32F072xB-o ./objects/main.o -MMD)
 I (stm32f0xx_conf.h)(0x68E4FB5F)
 I (..\..\system\stm32f0-stdperiph\stm32f0xx_gpio.h)(0x68E4FB61)
 I (..\..\system\cmsis\stm32f0xx.h)(0x68E4FB60)
@@ -29,11 +29,11 @@ I (..\..\system\cmsis\system_stm32f0xx.h)(0x68E4FB60)
 I (..\..\system\stm32f0-stdperiph\stm32f0xx_rcc.h)(0x68E4FB61)
 I (..\..\system\utils\sysdelay.h)(0x68E4FB62)
 I (..\..\system\board\board_led.h)(0x68EDE90D)
-I (..\..\system\board\board_button.h)(0x68EDFC6B)
+I (..\..\system\board\board_button.h)(0x68EE0112)
 F (..\..\system\utils\sysdelay.c)(0x68E4FB62)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ./ -I ../../system/cmsis -I ../../system/stm32f0-stdperiph -I ../../system/board -I ../../system/utils-IC:/Keil_v5/ARM/Packs/Keil/STM32F0xx_DFP/3.1.0/Drivers/CMSIS/Device/ST/STM32F0xx/Include-D__UVISION_VERSION="543" -DSTM32F072xB-o ./objects/sysdelay.o -MMD)
 I (..\..\system\utils\sysdelay.h)(0x68E4FB62)
-F (..\..\system\board\board_button.h)(0x68EDFC6B)()
-F (..\..\system\board\board_led.c)(0x68EDFCD0)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ./ -I ../../system/cmsis -I ../../system/stm32f0-stdperiph -I ../../system/board -I ../../system/utils-IC:/Keil_v5/ARM/Packs/Keil/STM32F0xx_DFP/3.1.0/Drivers/CMSIS/Device/ST/STM32F0xx/Include-D__UVISION_VERSION="543" -DSTM32F072xB-o ./objects/board_led.o -MMD)
+F (..\..\system\board\board_button.h)(0x68EE0112)()
+F (..\..\system\board\board_led.c)(0x68EE03AF)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ./ -I ../../system/cmsis -I ../../system/stm32f0-stdperiph -I ../../system/board -I ../../system/utils-IC:/Keil_v5/ARM/Packs/Keil/STM32F0xx_DFP/3.1.0/Drivers/CMSIS/Device/ST/STM32F0xx/Include-D__UVISION_VERSION="543" -DSTM32F072xB-o ./objects/board_led.o -MMD)
 I (..\..\system\stm32f0-stdperiph\stm32f0xx_gpio.h)(0x68E4FB61)
 I (..\..\system\cmsis\stm32f0xx.h)(0x68E4FB60)
 I (..\..\system\cmsis\core_cm0.h)(0x68E4FB5F)
@@ -45,4 +45,4 @@ I (..\..\system\stm32f0-stdperiph\stm32f0xx_gpio.h)(0x68E4FB61)
 I (..\..\system\cmsis\stm32f0xx.h)(0x68E4FB60)
 I (..\..\system\cmsis\core_cm0.h)(0x68E4FB5F)
 I (..\..\system\cmsis\system_stm32f0xx.h)(0x68E4FB60)
-I (..\..\system\board\board_button.h)(0x68EDFC6B)
+I (..\..\system\board\board_button.h)(0x68EE0112)

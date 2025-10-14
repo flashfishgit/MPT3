@@ -92,8 +92,7 @@ Section Cross References
     main.o(.text.main) refers to board_led.o(.text.LED_Initialize) for LED_Initialize
     main.o(.text.main) refers to board_button.o(.text.Button_Initialize) for Button_Initialize
     main.o(.text.main) refers to board_button.o(.text.Button_GetState) for Button_GetState
-    main.o(.text.main) refers to board_led.o(.text.LED_On) for LED_On
-    main.o(.text.main) refers to board_led.o(.text.LED_Off) for LED_Off
+    main.o(.text.main) refers to board_led.o(.text.LED_SetOut) for LED_SetOut
     main.o(.text.main) refers to sysdelay.o(.text.SysDelay_Delay) for SysDelay_Delay
     main.o(.ARM.exidx.text.main) refers to main.o(.text.main) for [Anonymous Symbol]
     main.o(.ARM.exidx.text.NVIC_SetPriority) refers to main.o(.text.NVIC_SetPriority) for [Anonymous Symbol]
@@ -377,7 +376,6 @@ Removing Unused input sections from the image.
     Removing board_led.o(.ARM.exidx.text.LED_Initialize), (8 bytes).
     Removing board_led.o(.ARM.exidx.text.LED_On), (8 bytes).
     Removing board_led.o(.ARM.exidx.text.LED_Off), (8 bytes).
-    Removing board_led.o(.text.LED_SetOut), (64 bytes).
     Removing board_led.o(.ARM.exidx.text.LED_SetOut), (8 bytes).
     Removing board_led.o(.text.LED_Toggle), (38 bytes).
     Removing board_led.o(.ARM.exidx.text.LED_Toggle), (8 bytes).
@@ -389,7 +387,7 @@ Removing Unused input sections from the image.
     Removing board_button.o(.ARM.exidx.text.Button_Initialize), (8 bytes).
     Removing board_button.o(.ARM.exidx.text.Button_GetState), (8 bytes).
 
-138 unused section(s) (total 4294 bytes) removed from the image.
+137 unused section(s) (total 4230 bytes) removed from the image.
 
 ==============================================================================
 
@@ -537,39 +535,40 @@ Image Symbol Table
     [Anonymous Symbol]                       0x08000660   Section        0  board_led.o(.text.LED_Off)
     [Anonymous Symbol]                       0x0800067c   Section        0  board_led.o(.text.LED_On)
     __arm_cp.1_0                             0x08000698   Number         4  board_led.o(.text.LED_On)
-    NVIC_SetPriority                         0x0800069d   Thumb Code   124  main.o(.text.NVIC_SetPriority)
-    [Anonymous Symbol]                       0x0800069c   Section        0  main.o(.text.NVIC_SetPriority)
-    __arm_cp.4_0                             0x08000718   Number         4  main.o(.text.NVIC_SetPriority)
-    __arm_cp.4_1                             0x0800071c   Number         4  main.o(.text.NVIC_SetPriority)
-    SetSysClock                              0x08000721   Thumb Code   220  system_stm32f0xx.o(.text.SetSysClock)
-    [Anonymous Symbol]                       0x08000720   Section        0  system_stm32f0xx.o(.text.SetSysClock)
-    __arm_cp.1_1                             0x080007fc   Number         4  system_stm32f0xx.o(.text.SetSysClock)
-    [Anonymous Symbol]                       0x08000800   Section        0  sysdelay.o(.text.SysDelay_Delay)
-    [Anonymous Symbol]                       0x08000828   Section        0  sysdelay.o(.text.SysDelay_GetTicks)
-    [Anonymous Symbol]                       0x08000830   Section        0  sysdelay.o(.text.SysDelay_IncTicks)
-    __arm_cp.0_0                             0x0800083c   Number         4  sysdelay.o(.text.SysDelay_IncTicks)
-    SysTick_Config                           0x08000841   Thumb Code    68  main.o(.text.SysTick_Config)
-    [Anonymous Symbol]                       0x08000840   Section        0  main.o(.text.SysTick_Config)
-    __arm_cp.1_0                             0x08000884   Number         4  main.o(.text.SysTick_Config)
-    __arm_cp.1_1                             0x08000888   Number         4  main.o(.text.SysTick_Config)
-    __arm_cp.1_2                             0x0800088c   Number         4  main.o(.text.SysTick_Config)
-    [Anonymous Symbol]                       0x08000890   Section        0  main.o(.text.SysTick_Handler)
-    [Anonymous Symbol]                       0x08000898   Section        0  main.o(.text.SysTick_Init)
-    __arm_cp.0_0                             0x080008ac   Number         4  main.o(.text.SysTick_Init)
-    [Anonymous Symbol]                       0x080008b0   Section        0  system_stm32f0xx.o(.text.SystemInit)
-    __arm_cp.0_0                             0x0800090c   Number         4  system_stm32f0xx.o(.text.SystemInit)
-    __arm_cp.0_1                             0x08000910   Number         4  system_stm32f0xx.o(.text.SystemInit)
-    __arm_cp.0_2                             0x08000914   Number         4  system_stm32f0xx.o(.text.SystemInit)
-    __arm_cp.0_3                             0x08000918   Number         4  system_stm32f0xx.o(.text.SystemInit)
-    __arm_cp.0_4                             0x0800091c   Number         4  system_stm32f0xx.o(.text.SystemInit)
-    __arm_cp.0_5                             0x08000920   Number         4  system_stm32f0xx.o(.text.SystemInit)
-    __arm_cp.0_6                             0x08000924   Number         4  system_stm32f0xx.o(.text.SystemInit)
-    __arm_cp.0_7                             0x08000928   Number         4  system_stm32f0xx.o(.text.SystemInit)
-    [Anonymous Symbol]                       0x0800092c   Section        0  main.o(.text.main)
-    BUTTON_PIN                               0x080009a4   Data          24  board_button.o(.rodata.BUTTON_PIN)
-    [Anonymous Symbol]                       0x080009a4   Section        0  board_button.o(.rodata.BUTTON_PIN)
-    LED_PIN                                  0x080009bc   Data          24  board_led.o(.rodata.LED_PIN)
-    [Anonymous Symbol]                       0x080009bc   Section        0  board_led.o(.rodata.LED_PIN)
+    [Anonymous Symbol]                       0x0800069c   Section        0  board_led.o(.text.LED_SetOut)
+    NVIC_SetPriority                         0x080006dd   Thumb Code   124  main.o(.text.NVIC_SetPriority)
+    [Anonymous Symbol]                       0x080006dc   Section        0  main.o(.text.NVIC_SetPriority)
+    __arm_cp.4_0                             0x08000758   Number         4  main.o(.text.NVIC_SetPriority)
+    __arm_cp.4_1                             0x0800075c   Number         4  main.o(.text.NVIC_SetPriority)
+    SetSysClock                              0x08000761   Thumb Code   220  system_stm32f0xx.o(.text.SetSysClock)
+    [Anonymous Symbol]                       0x08000760   Section        0  system_stm32f0xx.o(.text.SetSysClock)
+    __arm_cp.1_1                             0x0800083c   Number         4  system_stm32f0xx.o(.text.SetSysClock)
+    [Anonymous Symbol]                       0x08000840   Section        0  sysdelay.o(.text.SysDelay_Delay)
+    [Anonymous Symbol]                       0x08000868   Section        0  sysdelay.o(.text.SysDelay_GetTicks)
+    [Anonymous Symbol]                       0x08000870   Section        0  sysdelay.o(.text.SysDelay_IncTicks)
+    __arm_cp.0_0                             0x0800087c   Number         4  sysdelay.o(.text.SysDelay_IncTicks)
+    SysTick_Config                           0x08000881   Thumb Code    68  main.o(.text.SysTick_Config)
+    [Anonymous Symbol]                       0x08000880   Section        0  main.o(.text.SysTick_Config)
+    __arm_cp.1_0                             0x080008c4   Number         4  main.o(.text.SysTick_Config)
+    __arm_cp.1_1                             0x080008c8   Number         4  main.o(.text.SysTick_Config)
+    __arm_cp.1_2                             0x080008cc   Number         4  main.o(.text.SysTick_Config)
+    [Anonymous Symbol]                       0x080008d0   Section        0  main.o(.text.SysTick_Handler)
+    [Anonymous Symbol]                       0x080008d8   Section        0  main.o(.text.SysTick_Init)
+    __arm_cp.0_0                             0x080008ec   Number         4  main.o(.text.SysTick_Init)
+    [Anonymous Symbol]                       0x080008f0   Section        0  system_stm32f0xx.o(.text.SystemInit)
+    __arm_cp.0_0                             0x0800094c   Number         4  system_stm32f0xx.o(.text.SystemInit)
+    __arm_cp.0_1                             0x08000950   Number         4  system_stm32f0xx.o(.text.SystemInit)
+    __arm_cp.0_2                             0x08000954   Number         4  system_stm32f0xx.o(.text.SystemInit)
+    __arm_cp.0_3                             0x08000958   Number         4  system_stm32f0xx.o(.text.SystemInit)
+    __arm_cp.0_4                             0x0800095c   Number         4  system_stm32f0xx.o(.text.SystemInit)
+    __arm_cp.0_5                             0x08000960   Number         4  system_stm32f0xx.o(.text.SystemInit)
+    __arm_cp.0_6                             0x08000964   Number         4  system_stm32f0xx.o(.text.SystemInit)
+    __arm_cp.0_7                             0x08000968   Number         4  system_stm32f0xx.o(.text.SystemInit)
+    [Anonymous Symbol]                       0x0800096c   Section        0  main.o(.text.main)
+    BUTTON_PIN                               0x080009cc   Data          24  board_button.o(.rodata.BUTTON_PIN)
+    [Anonymous Symbol]                       0x080009cc   Section        0  board_button.o(.rodata.BUTTON_PIN)
+    LED_PIN                                  0x080009e4   Data          24  board_led.o(.rodata.LED_PIN)
+    [Anonymous Symbol]                       0x080009e4   Section        0  board_led.o(.rodata.LED_PIN)
     .bss                                     0x20000008   Section       96  libspace.o(.bss)
     uwTick                                   0x20000068   Data           4  sysdelay.o(.bss.uwTick)
     [Anonymous Symbol]                       0x20000068   Section        0  sysdelay.o(.bss.uwTick)
@@ -730,15 +729,16 @@ Image Symbol Table
     LED_Initialize                           0x080005f5   Thumb Code   104  board_led.o(.text.LED_Initialize)
     LED_Off                                  0x08000661   Thumb Code    28  board_led.o(.text.LED_Off)
     LED_On                                   0x0800067d   Thumb Code    28  board_led.o(.text.LED_On)
-    SysDelay_Delay                           0x08000801   Thumb Code    40  sysdelay.o(.text.SysDelay_Delay)
-    SysDelay_GetTicks                        0x08000829   Thumb Code     8  sysdelay.o(.text.SysDelay_GetTicks)
-    SysDelay_IncTicks                        0x08000831   Thumb Code    12  sysdelay.o(.text.SysDelay_IncTicks)
-    SysTick_Handler                          0x08000891   Thumb Code     8  main.o(.text.SysTick_Handler)
-    SysTick_Init                             0x08000899   Thumb Code    20  main.o(.text.SysTick_Init)
-    SystemInit                               0x080008b1   Thumb Code    92  system_stm32f0xx.o(.text.SystemInit)
-    main                                     0x0800092d   Thumb Code   120  main.o(.text.main)
-    Region$$Table$$Base                      0x080009d4   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x080009f4   Number         0  anon$$obj.o(Region$$Table)
+    LED_SetOut                               0x0800069d   Thumb Code    64  board_led.o(.text.LED_SetOut)
+    SysDelay_Delay                           0x08000841   Thumb Code    40  sysdelay.o(.text.SysDelay_Delay)
+    SysDelay_GetTicks                        0x08000869   Thumb Code     8  sysdelay.o(.text.SysDelay_GetTicks)
+    SysDelay_IncTicks                        0x08000871   Thumb Code    12  sysdelay.o(.text.SysDelay_IncTicks)
+    SysTick_Handler                          0x080008d1   Thumb Code     8  main.o(.text.SysTick_Handler)
+    SysTick_Init                             0x080008d9   Thumb Code    20  main.o(.text.SysTick_Init)
+    SystemInit                               0x080008f1   Thumb Code    92  system_stm32f0xx.o(.text.SystemInit)
+    main                                     0x0800096d   Thumb Code    96  main.o(.text.main)
+    Region$$Table$$Base                      0x080009fc   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x08000a1c   Number         0  anon$$obj.o(Region$$Table)
     SystemCoreClock                          0x20000000   Data           4  system_stm32f0xx.o(.data.SystemCoreClock)
     __libspace_start                         0x20000008   Data          96  libspace.o(.bss)
     __temporary_stack_top$libspace           0x20000068   Data           0  libspace.o(.bss)
@@ -751,9 +751,9 @@ Memory Map of the image
 
   Image Entry point : 0x080000c1
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00000a00, Max: 0x00020000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00000a28, Max: 0x00020000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x000009f4, Max: 0x00020000, ABSOLUTE)
+    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00000a1c, Max: 0x00020000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -829,30 +829,31 @@ Memory Map of the image
     0x080005f4   0x080005f4   0x0000006c   Code   RO          181    .text.LED_Initialize  board_led.o
     0x08000660   0x08000660   0x0000001c   Code   RO          185    .text.LED_Off       board_led.o
     0x0800067c   0x0800067c   0x00000020   Code   RO          183    .text.LED_On        board_led.o
-    0x0800069c   0x0800069c   0x00000084   Code   RO          157    .text.NVIC_SetPriority  main.o
-    0x08000720   0x08000720   0x000000e0   Code   RO          127    .text.SetSysClock   system_stm32f0xx.o
-    0x08000800   0x08000800   0x00000028   Code   RO          171    .text.SysDelay_Delay  sysdelay.o
-    0x08000828   0x08000828   0x00000008   Code   RO          169    .text.SysDelay_GetTicks  sysdelay.o
-    0x08000830   0x08000830   0x00000010   Code   RO          167    .text.SysDelay_IncTicks  sysdelay.o
-    0x08000840   0x08000840   0x00000050   Code   RO          151    .text.SysTick_Config  main.o
-    0x08000890   0x08000890   0x00000008   Code   RO          153    .text.SysTick_Handler  main.o
-    0x08000898   0x08000898   0x00000018   Code   RO          149    .text.SysTick_Init  main.o
-    0x080008b0   0x080008b0   0x0000007c   Code   RO          125    .text.SystemInit    system_stm32f0xx.o
-    0x0800092c   0x0800092c   0x00000078   Code   RO          155    .text.main          main.o
-    0x080009a4   0x080009a4   0x00000018   Data   RO          207    .rodata.BUTTON_PIN  board_button.o
-    0x080009bc   0x080009bc   0x00000018   Data   RO          195    .rodata.LED_PIN     board_led.o
-    0x080009d4   0x080009d4   0x00000020   Data   RO          398    Region$$Table       anon$$obj.o
+    0x0800069c   0x0800069c   0x00000040   Code   RO          187    .text.LED_SetOut    board_led.o
+    0x080006dc   0x080006dc   0x00000084   Code   RO          157    .text.NVIC_SetPriority  main.o
+    0x08000760   0x08000760   0x000000e0   Code   RO          127    .text.SetSysClock   system_stm32f0xx.o
+    0x08000840   0x08000840   0x00000028   Code   RO          171    .text.SysDelay_Delay  sysdelay.o
+    0x08000868   0x08000868   0x00000008   Code   RO          169    .text.SysDelay_GetTicks  sysdelay.o
+    0x08000870   0x08000870   0x00000010   Code   RO          167    .text.SysDelay_IncTicks  sysdelay.o
+    0x08000880   0x08000880   0x00000050   Code   RO          151    .text.SysTick_Config  main.o
+    0x080008d0   0x080008d0   0x00000008   Code   RO          153    .text.SysTick_Handler  main.o
+    0x080008d8   0x080008d8   0x00000018   Code   RO          149    .text.SysTick_Init  main.o
+    0x080008f0   0x080008f0   0x0000007c   Code   RO          125    .text.SystemInit    system_stm32f0xx.o
+    0x0800096c   0x0800096c   0x00000060   Code   RO          155    .text.main          main.o
+    0x080009cc   0x080009cc   0x00000018   Data   RO          207    .rodata.BUTTON_PIN  board_button.o
+    0x080009e4   0x080009e4   0x00000018   Data   RO          195    .rodata.LED_PIN     board_led.o
+    0x080009fc   0x080009fc   0x00000020   Data   RO          398    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x080009f8, Size: 0x00000670, Max: 0x00004000, ABSOLUTE)
+    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08000a20, Size: 0x00000670, Max: 0x00004000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000000   0x080009f8   0x00000004   Data   RW          131    .data.SystemCoreClock  system_stm32f0xx.o
-    0x20000004   0x080009fc   0x00000004   PAD
+    0x20000000   0x08000a20   0x00000004   Data   RW          131    .data.SystemCoreClock  system_stm32f0xx.o
+    0x20000004   0x08000a24   0x00000004   PAD
     0x20000008        -       0x00000060   Zero   RW          262    .bss                c_p.l(libspace.o)
     0x20000068        -       0x00000004   Zero   RW          173    .bss.uwTick         sysdelay.o
-    0x2000006c   0x080009fc   0x00000004   PAD
+    0x2000006c   0x08000a24   0x00000004   PAD
     0x20000070        -       0x00000200   Zero   RW          140    HEAP                startup_stm32f072.o
     0x20000270        -       0x00000400   Zero   RW          139    STACK               startup_stm32f072.o
 
@@ -864,16 +865,16 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-       168          4         24          0          0       2599   board_button.o
-       168          8         24          0          0       3261   board_led.o
-       364         24          0          0          0       3059   main.o
-       116         56        192          0       1536        720   startup_stm32f072.o
-       382          4          0          0          0       4419   stm32f0xx_gpio.o
-        64          4          0          0          4        945   sysdelay.o
-       348         36          0          4          0       2267   system_stm32f0xx.o
+       168          4         24          0          0       2572   board_button.o
+       232          8         24          0          0       3234   board_led.o
+       340         24          0          0          0       2986   main.o
+       116         56        192          0       1536        696   startup_stm32f072.o
+       382          4          0          0          0       4392   stm32f0xx_gpio.o
+        64          4          0          0          4        918   sysdelay.o
+       348         36          0          4          0       2240   system_stm32f0xx.o
 
     ----------------------------------------------------------------------
-      1612        136        272          4       1548      17270   Object Totals
+      1652        136        272          4       1548      17038   Object Totals
          0          0         32          0          0          0   (incl. Generated)
          2          0          0          0          8          0   (incl. Padding)
 
@@ -923,15 +924,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      2276        158        272          4       1644      17734   Grand Totals
-      2276        158        272          4       1644      17734   ELF Image Totals
-      2276        158        272          4          0          0   ROM Totals
+      2316        158        272          4       1644      17502   Grand Totals
+      2316        158        272          4       1644      17502   ELF Image Totals
+      2316        158        272          4          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 2548 (   2.49kB)
+    Total RO  Size (Code + RO Data)                 2588 (   2.53kB)
     Total RW  Size (RW Data + ZI Data)              1648 (   1.61kB)
-    Total ROM Size (Code + RO Data + RW Data)       2552 (   2.49kB)
+    Total ROM Size (Code + RO Data + RW Data)       2592 (   2.53kB)
 
 ==============================================================================
 
