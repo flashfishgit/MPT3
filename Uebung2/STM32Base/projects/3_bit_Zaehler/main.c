@@ -55,24 +55,27 @@ int main(void)
 	
 	LED_Initialize();
 	Button_Initialize();
-	
+		
+	// counter for 3 bit Adder
 	uint8_t counter = 0;
-	
+
 while (1){
 		uint32_t state = Button_GetState();
 		
 		if(state & BUTTON_USER0_MASK){
-			counter++;
+			// increments adder and removes overflows
+			counter = (counter+1) &0x7;
 		}
 		
 		if(state & BUTTON_USER1_MASK){
-			counter--;
+			// dercrement adder and removes underflows
+			counter = (counter-1) & (uint32_t)0x7;
 		}
-		
-		if(counter
 	
 		LED_SetOut(counter);
-    SysDelay_Delay(200);
+		
+		// 2 Hz freq
+    SysDelay_Delay(500);
 
   }
     
