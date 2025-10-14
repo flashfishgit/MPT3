@@ -1,0 +1,83 @@
+\documentclass{report}
+\usepackage{pdfpages}
+\usepackage[a4paper, top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{graphicx} 
+\usepackage{ulem}
+\usepackage{listings}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{minted}
+
+\lstdefinestyle{cppstyle}{
+	language=C++,             % Specify the language
+	basicstyle=\ttfamily,     % Set the font to typewriter
+	basicstyle=\ttfamily\footnotesize,
+	keywordstyle=\color{blue}\bfseries, % Keywords in bold blue
+	commentstyle=\color{green},         % Comments in green
+	stringstyle=\color{red},            % Strings in red
+	numbers=left,            % Line numbers on the left
+	numberstyle=\tiny\color{gray}, % Line numbers in tiny gray font
+	stepnumber=1,             % Line number step
+	breaklines=true,          % Automatic line breaking
+	tabsize=4,                % Set tab size
+	showstringspaces=false,   % Don't show spaces in strings
+	frame=single,             % Add a frame around the code
+}
+
+\newcommand{\name}{Marco Söllinger}
+\newcommand{\fach}{SEN2}
+\newcommand{\topic}{Übung 1}
+\newcommand{\uebungangabe}{Uebung1.pdf}
+
+\newcommand{\matnr}{s2410306011}
+\newcommand{\uebungsgruppe}{Gruppe 2}
+\newcommand{\aufwand}{4}
+
+
+\pagestyle{fancy}
+\normalem 
+\fancyhead[R]{Marco Söllinger}  
+
+\begin{document}
+\includepdf[pages=1,pagecommand={
+			\begin{textblock*}{5cm}(3.5cm, 3.1cm)
+				\textbf{\name}    \textbf{\matnr}
+			\end{textblock*}
+		}]{./MPT3_Uebung2.pdf}
+
+\section{Aufgabe 1:}
+
+\subsection{Loesungsidee}
+Der Button driver wurde aehnlich wie der LED driver implementiert. Es wurde ein Array mit den Button Pins und Ports erstellt.\\
+In den einezlnen Funktionen wird mittels einer for-Schleife ueber die Buttons iteriert und der entsprechende Pin/Port angesprochen.\\
+Wobei bei durch meiner Implementierung von uint32\_t Button\_GetState(void) gefordert wird, das die Definition der Buttons im Array gleich ist wie im Output dieser Funktion gefordert.\\
+Also der erste GPIO in dem Array ist das bit 0 im Output der Funktion.\\\\\\
+Der 3-bit Zahler wurde in der main.c implementiert.\\
+Diese benutzt die LED\_SetOut(counter) Funktion um den Zaehlerstand anzuzeigen. (Das 0. bit wird auf der Led3 angezeigt und das 3.bit auf der Led5)\\
+Die Knopfe wurden wie in der Angabe verbunden mit dem incrementieren und decrementieren des Addierers.\\
+Die Refreshrate des Addierers ist 2Hz.\\
+
+\subsection{Code}
+\lstinputlisting[style=cppstyle, title=\texttt{main.c} ]{../STM32Base/projects/3_bit_Zaehler/main.c}
+\lstinputlisting[style=cppstyle, title=\texttt{board\_button.h} ]{../STM32Base/system/board/board_button.h}
+\lstinputlisting[style=cppstyle, title=\texttt{board\_button.c} ]{../STM32Base/system/board/board_button.c}
+
+\subsubsection{Fragen}
+
+- Was passiert bei Eingängen, bei denen kein Pullup/Pulldown—Widerstand vorhanden ist?\\
+Dann ist der Pegel undefiniert, wenn nicht auf dem Schalter gedrueckt wird(Fall ABUS).\\
+Man weiss nicht ob der Pegel hoch oder niedrig ist, da sich Signale aus der Umgebung einkoppeln koennen.\\
+Je nach dem Potential der Umgebung kann der Pegel dann hoch oder niedrig sein, wenn die Schmittrigger Grenzen ueberschritten werden.\\\\
+- Wie und an welcher Stelle im Code wird der Pullup/Pulldown Widerstand aktiviert?\\
+Die Konfiguration wird im Initialisierungsstruktur des GPIOs vorgenommen:\\
+initStruct.GPIO\_PuPd = GPIO\_PuPd\_DOWN;\\
+Diese Konfiguration wird dann mit GPIO\_Init() uebernommen.\\\\
+- Welche GPIO-Register werden benötigt, um den GPIO-Pin auf Eingang zu konfigurieren und den Pullup/Pulldown zu aktivieren?\\
+GPIO Eingang: GPIOx\_MODER (00 die einen Bits fuer den Pin um ihn als Eingang konfigurieren)\\
+GPIO Pullup/Pulldown: GPIOx\_PUPDR (10 fuer PullDown, 01 fuer PullUp)\\\\
+- Warum muss beim Zählen eine Verzögerung eingebaut werden?\\
+Weil der Mikrocontroller so schnell ist, dass er den Knopf mehrfach als gedrueckt erkennt, obwohl der Knopf nur einmal gedrueckt wurde.\\
+Bzw. wenn der Knopf gehalten wird, sich die Werte so schnell aendern, dass man nur leuchtende Leds sieht.\\
+
+
+\end{document}
