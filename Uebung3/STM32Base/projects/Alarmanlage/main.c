@@ -26,7 +26,7 @@
   * @param  None
   * @retval None
   */
-void SysTick_Init(void) 
+static void SysTick_Init(void) 
 {
     /* init the sys tick timer to be called every 1ms */
     SysTick_Config(SystemCoreClock / 1000);
@@ -38,10 +38,36 @@ void SysTick_Init(void)
   * @param  None
   * @retval None
   */
-void SysTick_Handler()
+static void SysTick_Handler()
 {
     SysDelay_IncTicks();
 }
+
+static void SwitchClockTo24Mhz(){
+	//Switch to clock HSI
+	RCC->CFGR &= ~RCC_CFGR_SW; 
+	
+	//switch to HSE 
+	RCC->CFGR |= RCC_CFGR_SW_HSE;
+	
+	while((RCC->CFGR & RCC_CFGR_SWS) != RCC_CFGR_SWS_HSE){
+	}
+	
+	// reconfigure PLL
+	RCC->CR &= ~RCC_CR_PLLON;
+	
+	//TODO:Wait until PLLRDY is cleared. The PLL is now fully stopped.
+	
+	//Change to desired parameter.
+	RCC->CFGR &= ~RCC_CFGR_PLLMUL;
+	RCC->CFGR |= RCC_CFGR_PLLMUL3;
+	
+	//TODO: Enable the PLL again by setting PLLON to 1.
+	//TODO: Wait until PLLRDY is set.
+	
+	//TODO: Switch back to PLL as sysclock.
+}
+
 
 
 /**

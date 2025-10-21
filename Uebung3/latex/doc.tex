@@ -56,6 +56,17 @@
 \lstinputlisting[style=cppstyle, title=\texttt{board\_button.c} ]{../STM32Base/system/board/board_button.c}
 
 \subsubsection{Fragen}
+- Was ändert sich mit der neu eingestellten Frequenz? Warum?\\
+Die exections Gewschwindigkeit des Microcontollers ändert sich.\\
+Damit ändert sich auch die Gewschwindigkeit in, welche sich die Led Blinkt \\\\
+-  Mit welcher Frequenz wird der Prozessor betrieben, wenn das Hauptprogramm gestartet wird? \\
+Der HighSpeed internal Clock HSI (8Mhz) in system_stm32f0xx.c dann wechselt er auf den externen in SetSysClock()
+dann PLL 8 Mhz clock falls fehlerhaft wieder intern 
+
+OSC-IN -> 8 Mhz Quarz (external Clock) Divisor 1 / Mul 6 auf 48 Mhz -> zu Pll
+
+check for switchin on 108
+
 
 
 \end{document}
