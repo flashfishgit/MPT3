@@ -1,32 +1,0 @@
-Dependencies for Project 'LED', Target 'APUS': (DO NOT MODIFY !)
-CompilerVersion: 6240000::V6.24::ARMCLANG
-F (..\..\system\stm32f0-stdperiph\stm32f0xx_gpio.c)(0x68E96F0C)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ./ -I ../../system/cmsis -I ../../system/stm32f0-stdperiph -I ../../system/board -I ../../system/utils-IC:/Users/flashfishuser/AppData/Local/Arm/Packs/Keil/STM32F0xx_DFP/3.1.1/Drivers/CMSIS/Device/ST/STM32F0xx/Include-D__UVISION_VERSION="543" -DSTM32F072xB-o ./objects/stm32f0xx_gpio.o -MMD)
-I (stm32f0xx_conf.h)(0x68E96F0C)
-I (..\..\system\stm32f0-stdperiph\stm32f0xx_gpio.h)(0x68E96F0C)
-I (..\..\system\cmsis\stm32f0xx.h)(0x68E96F0C)
-I (..\..\system\cmsis\core_cm0.h)(0x68E96F0C)
-I (..\..\system\cmsis\system_stm32f0xx.h)(0x68E96F0C)
-I (..\..\system\stm32f0-stdperiph\stm32f0xx_rcc.h)(0x68E96F0C)
-F (..\..\system\stm32f0-stdperiph\stm32f0xx_rcc.c)(0x68E96F0C)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ./ -I ../../system/cmsis -I ../../system/stm32f0-stdperiph -I ../../system/board -I ../../system/utils-IC:/Users/flashfishuser/AppData/Local/Arm/Packs/Keil/STM32F0xx_DFP/3.1.1/Drivers/CMSIS/Device/ST/STM32F0xx/Include-D__UVISION_VERSION="543" -DSTM32F072xB-o ./objects/stm32f0xx_rcc.o -MMD)
-I (stm32f0xx_conf.h)(0x68E96F0C)
-I (..\..\system\stm32f0-stdperiph\stm32f0xx_gpio.h)(0x68E96F0C)
-I (..\..\system\cmsis\stm32f0xx.h)(0x68E96F0C)
-I (..\..\system\cmsis\core_cm0.h)(0x68E96F0C)
-I (..\..\system\cmsis\system_stm32f0xx.h)(0x68E96F0C)
-I (..\..\system\stm32f0-stdperiph\stm32f0xx_rcc.h)(0x68E96F0C)
-F (..\..\system\cmsis\system_stm32f0xx.c)(0x68E96F0C)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ./ -I ../../system/cmsis -I ../../system/stm32f0-stdperiph -I ../../system/board -I ../../system/utils-IC:/Users/flashfishuser/AppData/Local/Arm/Packs/Keil/STM32F0xx_DFP/3.1.1/Drivers/CMSIS/Device/ST/STM32F0xx/Include-D__UVISION_VERSION="543" -DSTM32F072xB-o ./objects/system_stm32f0xx.o -MMD)
-I (..\..\system\cmsis\stm32f0xx.h)(0x68E96F0C)
-I (..\..\system\cmsis\core_cm0.h)(0x68E96F0C)
-I (..\..\system\cmsis\system_stm32f0xx.h)(0x68E96F0C)
-F (..\..\system\cmsis\startup_stm32f072.s)(0x68E96F0C)(--cpu Cortex-M0 --pd "__EVAL SETA 1" -g --diag_suppress=A1950W-IC:\Users\flashfishuser\AppData\Local\Arm\Packs\Keil\STM32F0xx_DFP\3.1.1\Drivers\CMSIS\Device\ST\STM32F0xx\Include--pd "__UVISION_VERSION SETA 543"--pd "STM32F072xB SETA 1"--list .\listings\startup_stm32f072.lst--xref -o .\objects\startup_stm32f072.o--depend .\objects\startup_stm32f072.d)
-F (.\led.c)(0x68E98619)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ./ -I ../../system/cmsis -I ../../system/stm32f0-stdperiph -I ../../system/board -I ../../system/utils-IC:/Users/flashfishuser/AppData/Local/Arm/Packs/Keil/STM32F0xx_DFP/3.1.1/Drivers/CMSIS/Device/ST/STM32F0xx/Include-D__UVISION_VERSION="543" -DSTM32F072xB-o ./objects/led.o -MMD)
-I (stm32f0xx_conf.h)(0x68E96F0C)
-I (..\..\system\stm32f0-stdperiph\stm32f0xx_gpio.h)(0x68E96F0C)
-I (..\..\system\cmsis\stm32f0xx.h)(0x68E96F0C)
-I (..\..\system\cmsis\core_cm0.h)(0x68E96F0C)
-I (..\..\system\cmsis\system_stm32f0xx.h)(0x68E96F0C)
-I (..\..\system\stm32f0-stdperiph\stm32f0xx_rcc.h)(0x68E96F0C)
-I (..\..\system\utils\sysdelay.h)(0x68E96F0C)
-F (.\stm32f0xx_conf.h)(0x68E96F0C)()
-F (..\..\system\utils\sysdelay.c)(0x68E96F0C)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__EVAL -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ./ -I ../../system/cmsis -I ../../system/stm32f0-stdperiph -I ../../system/board -I ../../system/utils-IC:/Users/flashfishuser/AppData/Local/Arm/Packs/Keil/STM32F0xx_DFP/3.1.1/Drivers/CMSIS/Device/ST/STM32F0xx/Include-D__UVISION_VERSION="543" -DSTM32F072xB-o ./objects/sysdelay.o -MMD)
-I (..\..\system\utils\sysdelay.h)(0x68E96F0C)
