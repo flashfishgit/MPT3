@@ -24,12 +24,12 @@
 	frame=single,             % Add a frame around the code
 }
 
-\newcommand{\name}{Marco Söllinger}
+\newcommand{\name}{Marco Söllinger,}
 \newcommand{\fach}{SEN2}
 \newcommand{\topic}{Übung 1}
 \newcommand{\uebungangabe}{Uebung1.pdf}
 
-\newcommand{\matnr}{s2410306011}
+\newcommand{\matnr}{s2410306011, Gruppe 1}
 \newcommand{\uebungsgruppe}{Gruppe 2}
 \newcommand{\aufwand}{4}
 
@@ -40,33 +40,50 @@
 
 \begin{document}
 \includepdf[pages=1,pagecommand={
-			\begin{textblock*}{5cm}(3.5cm, 3.1cm)
+			\begin{textblock*}{10cm}(3.5cm, 3.1cm)
 				\textbf{\name}    \textbf{\matnr}
 			\end{textblock*}
-		}]{./MPT3_Uebung2.pdf}
+		}]{./MPT3_Uebung_3.pdf}
 
-\section{Aufgabe 1:}
+\section*{Aufgabe 1:}
 
-\subsection{Loesungsidee}
+\subsection*{1.1 Loesungsidee}
+Es wurde die Alarmanlagenlogic in der main.c implementiert.\\
+Fuer das periodische Blinken der LED wurden die SysTick verwendet.\\
+Fuer das Ansteuern der Peripherie wurde die gegebenen Board Treiber verwendet.\\\\
+Fuer das, wechseln der Systemclock Frequenz wurde die Funktion SetSysClock in system\_stm32f0xx.c kopiert und angepasst.\\
+Das wechseln zur HSE Clock und ausschalten des PLL wurde noch in die standert SetSysClock Funktion hinzugefuegt.\\
+Die neue Implementierung heisst SwitchClockTo24Mhz() und liegt in der main.c Datei.\\
+Ausserdem wurde das Aktualisieren der SysTick Zeit in dieser Funktion hinzugefuegt.\\
 
 
-\subsection{Code}
-\lstinputlisting[style=cppstyle, title=\texttt{main.c} ]{../STM32Base/projects/3_bit_Zaehler/main.c}
-\lstinputlisting[style=cppstyle, title=\texttt{board\_button.h} ]{../STM32Base/system/board/board_button.h}
-\lstinputlisting[style=cppstyle, title=\texttt{board\_button.c} ]{../STM32Base/system/board/board_button.c}
+\subsection*{1.2 Code}
+Die Board treiber wurden nicht veraendert und sind in den Board Unterordnern zu finden.\\
 
-\subsubsection{Fragen}
+\lstinputlisting[style=cppstyle, title=\texttt{main.c} ]{../STM32Base/projects/Alarmanlage/main.c}
+
+
+\subsection*{1.3 Fragen}
 - Was ändert sich mit der neu eingestellten Frequenz? Warum?\\
-Die exections Gewschwindigkeit des Microcontollers ändert sich.\\
-Damit ändert sich auch die Gewschwindigkeit in, welche sich die Led Blinkt \\\\
+Wenn man meinen Code ausfuehrt, wie oben gezeigt, aendert das Aufrufen der SwitchClockTo24Mhz Funktion die Systemclock Frequenz von 48Mhz auf 24Mhz.\\
+Das Blinken der Led wird dadurch nicht beeinflusst, da die SysTick Zeit ebenfalls angepasst wird mittels:\\
+- SystemCoreClockUpdate();\\
+- SysTick\_Config(SystemCoreClock / 1000);\\
+Diese Aufrufe aktualisieren die SystemTick Zeit auf 1ms bei 24Mhz.\\\\
+Wenn diese Aktualisierung nicht gemacht wird, blinkt die LED langsamer, da die SysTick Zeit immer noch auf 1ms bei 48Mhz eingestellt ist.\\\\\\
 -  Mit welcher Frequenz wird der Prozessor betrieben, wenn das Hauptprogramm gestartet wird? \\
-Der HighSpeed internal Clock HSI (8Mhz) in system_stm32f0xx.c dann wechselt er auf den externen in SetSysClock()
-dann PLL 8 Mhz clock falls fehlerhaft wieder intern 
-
-OSC-IN -> 8 Mhz Quarz (external Clock) Divisor 1 / Mul 6 auf 48 Mhz -> zu Pll
-
-check for switchin on 108
-
+Wenn der Microcontroller gestartet wird, wird er mit der internen HighSpeed Clock HSI (8Mhz) betrieben. (Hardware default)\\
+In der startup.s wird der Reset Handler aufgerufen, welcher die SystemInit Funktion in system\_stm32f0xx.c aufruft.\\
+Diese Funktion setzt ein paar Initalzustand und ruft anschliessend die SetSysClock Funktion auf.\\
+SetSysClock schaltet den High speed external Clock HSE (8Mhz Quarz) ein, konifiguriert den PLL (8Mhz /1 *6 = 48Mhz), schaltet diese ein und wechselt die Systemclock auf die PLL als source.\\
+Ausserdem wird die Flash latency richtig modifiziert, damit der Prozessor bei 48Mhz stabil laeuft.\\
+Macht man das nicht, haengt sich der Microcontroller nach einiger Zeit auf.\\\\
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.6\textwidth]{./Pic.png}
+	\caption{Pfad der Sytemclocks}
+	\label{Task1_address0x0}
+\end{figure}
 
 
 \end{document}
