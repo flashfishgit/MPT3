@@ -74,10 +74,10 @@ void TIM3_InitForCompareOutput(){
 	RCC->APB1ENR |= RCC_APB1ENR_TIM3EN;
 	
 	// 1000L = Prescaler=1000, 2 = 50% high/50% low
-	TIM3->ARR = (SystemCoreClock / 1000L / 2UL) -1 ;
+	TIM3->ARR = (SystemCoreClock / 1000L ) -1 ;
 	TIM3->PSC = (1000 -1);
 	
-	TIM3->CCR3 = (SystemCoreClock / 1000L / 2UL / 2UL) -1;
+	TIM3->CCR3 = (SystemCoreClock / 1000L / 2UL) -1;
 	
 	// configure output compare mode to PWM mode 2
 	TIM3->CCMR2 |= (7 << 4);
