@@ -21,6 +21,12 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
+// 2*5Hz
+#define TIM_PSC (1000-1)
+#define TIM_ARR (4800-1)
+
+#define BUTTON_USER0_PIN       GPIO_Pin_0
+#define BUTTON_USER1_PIN       GPIO_Pin_1
 
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
@@ -56,6 +62,54 @@ void SysTick_Handler() {
   SysDelay_IncTicks();
 }
 
+//should be initalized before Interrupt for correct order
+void TIM3_Init(){
+	// Activate timer 3 clock
+	 if (!(RCC->APB1ENR & RCC_APB1ENR_TIM3EN)) {
+     RCC->APB1ENR |= RCC_APB1ENR_TIM3EN;
+  }
+	 
+	// Stop timer if already running
+	TIM3->CR1 &= ~TIM_CR1_CEN;
+	
+	// Sets the timer freq and DutyCylce
+	TIM3->ARR = TIM_ARR;
+	TIM3->PSC = TIM_PSC;
+	
+	// Enable upddate interrupt enable so ISR gets called
+	TIM3->DIER |= TIM_DIER_UIE;
+	                     
+	// Make sure Status Flag is reset
+	TIM3->SR &= ~TIM_SR_UIF;
+	
+	// Enable interrupt
+	NVIC_EnableIRQ(TIM3_IRQn);
+}
+
+static void inline TIM3_StartBlinken(){
+	// Clear Flag
+	TIM3->SR &= ~TIM_SR_UIF;
+	// make sure timer start at beginning
+	TIM3->CNT = 0; 
+	//start the compare match timer
+	TIM3->CR1 |= TIM_CR1_CEN;
+};
+
+static void inline TIM3_StopBlinken(){
+	//stop timer
+	TIM3->CR1 &= ~TIM_CR1_CEN;
+	
+	LED_Off(LED3);
+};
+
+// Interrupt Routine
+void TIM3_IRQHandler(void) {
+    if (TIM3->SR & TIM_SR_UIF) {
+        TIM3->SR &= ~TIM_SR_UIF;    // Flag löschen
+        LED_Toggle(LED3);           // Blink-LED
+    }
+}
+
 void EXTI_Initialize(){
 	// enable the clock for the syscfg register to configure the external interrupt
 	RCC->APB2ENR |= RCC_APB2ENR_SYSCFGEN;
@@ -66,51 +120,44 @@ void EXTI_Initialize(){
 	SYSCFG->EXTICR[0] |= SYSCFG_EXTICR1_EXTI0_PD| SYSCFG_EXTICR1_EXTI1_PD; // für PortD
 	
 	//configure mask bit to enable IRQ for line 0 and line 1
-	EXTI->IMR |= GPIO_Pin_0 | GPIO_Pin_1;
+	EXTI->IMR |= BUTTON_USER0_PIN | BUTTON_USER1_PIN;
 	
 	//configure EXTI0 and EXTI1 for rising edge interrupts
-	EXTI->RTSR |= GPIO_Pin_0 | GPIO_Pin_1;
+	EXTI->RTSR |= BUTTON_USER0_PIN | BUTTON_USER1_PIN;
 	
 	//configure NVIC and enable EXT0_1 IRQ channel
 	NVIC_EnableIRQ(EXTI0_1_IRQn);
-	
 }
 
 // EXTI0_1 Interrupt Handler
 void EXTI0_1_IRQHandler(void){
-	if(EXTI->PR & GPIO_Pin_0){
+	if(EXTI->PR & BUTTON_USER0_PIN){
 		//reset pending bit
-		//No read modify write  here bacause we read a 1 if an other IRQ is pendig
-		EXTI->PR = GPIO_Pin_0; 
+		EXTI->PR = BUTTON_USER0_PIN; 
 		
 		LED_Toggle(LED4);
+		TIM3_StartBlinken();
 		
 	} 
-	if(EXTI->PR & GPIO_Pin_1){
+	if(EXTI->PR & BUTTON_USER1_PIN){
 		//reset pending bit
-		//No read modify write  here bacause we read a 1 if an other IRQ is pendig
-		EXTI->PR = GPIO_Pin_0; 
+		EXTI->PR = BUTTON_USER1_PIN; 
 		
 		LED_Toggle(LED5);
+		TIM3_StopBlinken();
 	}
 }
 
 
 
-
 int main(void) {
   SysTick_Init();
-  LED_Initialize();
+  LED_Initialize(); 
   Button_Initialize();
-
-  uint32_t lastToggle = 0;
-  bool switchedHSI = false;
-
+	TIM3_Init();
 	EXTI_Initialize();
 	
   while (1) {
-   
-
     SysDelay_Delay(1);
   }
 }
